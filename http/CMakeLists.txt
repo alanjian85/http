@@ -1,5 +1,7 @@
 set(HTTP_SRCS
-    src/main.cc)
+    src/main.cc
+    src/server.cc
+    src/server.h)
 add_executable(http ${HTTP_SRCS})
 
 find_package(Boost COMPONENTS system REQUIRED)
