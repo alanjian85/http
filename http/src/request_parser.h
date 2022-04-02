@@ -14,6 +14,8 @@ namespace http {
             kUnknown
         };
 
+        RequestParser();
+
         template <typename Iterator>
         std::pair<Result, Iterator> parse(Request& req, Iterator begin, Iterator end) {
             while (begin != end) {
@@ -29,8 +31,8 @@ namespace http {
             kMethod,
             kURI,
             kVersionH,
-            kVersionT,
-            kVersionT,
+            kVersionT1,
+            kVersionT2,
             kVersionP,
             kVersionSlash,
             kVersionMajorStart,
@@ -39,6 +41,7 @@ namespace http {
             kVersionMinor,
             kNewline1,
             kHeaderStart,
+            kHeaderLWS,
             kHeaderName,
             kHeaderSpace,
             kHeaderValue,
@@ -47,6 +50,14 @@ namespace http {
         };
 
         Result consume(Request& req, char c);
+
+        bool isChar(char c);
+
+        bool isCtl(char c);
+
+        bool isDigit(char c);
+
+        bool isSeparator(char c);
 
         State state_;
     };
